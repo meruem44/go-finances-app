@@ -36,18 +36,10 @@ a capacidade de ver relatórios sobre seus saldos financeiros.
 - @react-navigation/native (Versão 5)
 - hookform (Para tratar formulários)
 
-## Fotos da Aplicação
-
--> Tela inicial
-![Screenshot_1632861109](https://user-images.githubusercontent.com/48477073/135161249-e57330b4-9a3b-41e8-b66d-d400f2b0d5e8.png)
-
-->  Tela Dashboard
-![Screenshot_1632861161](https://user-images.githubusercontent.com/48477073/135161341-0bac3f7e-8a0d-44a1-9a44-f0e76ed0a917.png)
+## Video exemplo do funcionamento da aplicação
 
 
 
-## Video exemplo do funcionamento
+https://user-images.githubusercontent.com/48477073/135167548-55c699a7-3925-4f42-914a-860a2b2a32a2.mp4
 
--> Autenticação
 
--> Registro de transações
