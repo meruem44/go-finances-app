@@ -3,6 +3,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useFocusEffect } from "@react-navigation/native";
 import { ActivityIndicator } from "react-native";
 import { useTheme } from "styled-components";
+import { useAuth } from "../../contexts/auth";
 
 import { HighlightCard } from "../../components/HighlightCard";
 import {
@@ -43,10 +44,9 @@ interface HighlightData {
   total: HighlightProps;
 }
 
-const dataKey = "@gofinance:transactions";
-
 export function Dashboard() {
   const { colors } = useTheme();
+  const { signOut, user } = useAuth();
 
   const [data, setDate] = useState<DataListProps[]>([]);
   const [highlightData, setHighlightDate] = useState<HighlightData>(
@@ -109,6 +109,8 @@ export function Dashboard() {
 
   async function loadTransactions() {
     setIsLoading(true);
+
+    const dataKey = `@gofinance:transactions_user:${user.id}`;
 
     const response = await AsyncStorage.getItem(dataKey);
     const transactions = response ? JSON.parse(response) : [];
@@ -224,15 +226,15 @@ export function Dashboard() {
               <UserInfo>
                 <Photo
                   source={{
-                    uri: "https://avatars.githubusercontent.com/u/48477073?v=4",
+                    uri: user?.photo,
                   }}
                 />
                 <User>
                   <UserGreeting>Olá,</UserGreeting>
-                  <UserName>Leandro</UserName>
+                  <UserName>{user?.name}</UserName>
                 </User>
               </UserInfo>
-              <LogoutButton>
+              <LogoutButton onPress={signOut}>
                 <Icon name="power" />
               </LogoutButton>
             </UserWrapper>

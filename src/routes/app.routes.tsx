@@ -17,15 +17,14 @@ export function AppRoutes() {
 
   return (
     <Navigator
-      screenOptions={{
-        tabBarActiveTintColor: colors.secundary,
-        tabBarInactiveTintColor: colors.text,
-        tabBarLabelPosition: "beside-icon",
-        tabBarStyle: {
+      tabBarOptions={{
+        activeTintColor: colors.secundary,
+        inactiveTintColor: colors.text,
+        labelPosition: "beside-icon",
+        style: {
           padding: Platform.OS === "ios" ? RFValue(20) : 0,
           height: RFValue(70),
         },
-        headerShown: false,
       }}
     >
       <Screen

@@ -1,7 +1,8 @@
-import React, { useEffect, useState, useCallback } from "react";
+import React, { useState, useCallback } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { VictoryPie } from "victory-native";
 import { useTheme } from "styled-components";
+import { useAuth } from "../../contexts/auth";
 import { useFocusEffect } from "@react-navigation/native";
 import { useBottomTabBarHeight } from "@react-navigation/bottom-tabs";
 import { addMonths, subMonths, format } from "date-fns";
@@ -42,6 +43,7 @@ interface CategoryData {
 }
 
 export function Resume() {
+  const { user } = useAuth();
   const { colors, fonts } = useTheme();
 
   const [isLoading, setIsLoading] = useState(false);
@@ -59,7 +61,7 @@ export function Resume() {
   async function loadData() {
     setIsLoading(true);
 
-    const dataKey = "@gofinance:transactions";
+    const dataKey = `@gofinance:transactions_user:${user.id}`;
     const response = await AsyncStorage.getItem(dataKey);
     const transactions = response
       ? JSON.parse(response)

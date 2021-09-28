@@ -1,11 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import * as Yup from "yup";
+import { NavigationProp } from "@react-navigation/native";
 import { yupResolver } from "@hookform/resolvers/yup";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import uuid from "react-native-uuid";
+import { useAuth } from "../../contexts/auth";
 
 import { useForm } from "react-hook-form";
-import { useNavigation } from "@react-navigation/native";
 
 import { Alert, Keyboard, Modal } from "react-native";
 import { Button } from "../../components/Form/Button";
@@ -38,7 +39,13 @@ const schema = Yup.object().shape({
     .required("Valor é obrigatório"),
 });
 
-export function Register({ navigation }) {
+interface RegisterProps {
+  navigation: NavigationProp<{}>;
+}
+
+export function Register({ navigation }: RegisterProps) {
+  const { user } = useAuth();
+
   const {
     control,
     handleSubmit,
@@ -89,9 +96,9 @@ export function Register({ navigation }) {
     };
 
     try {
-      const dataKey = "@gofinance:transactions";
+      const dataKey = `@gofinance:transactions_user:${user.id}`;
 
-      const data = await AsyncStorage.getItem("@gofinance:transactions");
+      const data = await AsyncStorage.getItem(dataKey);
       const currentData = data ? JSON.parse(data) : [];
 
       const dataFormated = [...currentData, newTransaction];
@@ -105,7 +112,7 @@ export function Register({ navigation }) {
       });
 
       reset();
-      navigation.navigate("Listagem");
+      navigation.navigate("Listagem" as never);
     } catch (error) {
       console.log(error);
       Alert.alert(
