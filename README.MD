@@ -38,6 +38,14 @@ a capacidade de ver relatórios sobre seus saldos financeiros.
 
 ## Fotos da Aplicação
 
+-> Tela inicial
+![Screenshot_1632861109](https://user-images.githubusercontent.com/48477073/135161249-e57330b4-9a3b-41e8-b66d-d400f2b0d5e8.png)
+
+->  Tela Dashboard
+![Screenshot_1632861161](https://user-images.githubusercontent.com/48477073/135161341-0bac3f7e-8a0d-44a1-9a44-f0e76ed0a917.png)
+
+
+
 ## Video exemplo do funcionamento
 
 -> Autenticação
